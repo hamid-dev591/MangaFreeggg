@@ -1,0 +1,3 @@
+const createEmbed=require('../utils/embed');
+const sendLog=require('../utils/sendLog');
+module.exports=(client)=>{client.on('messageUpdate',async(o,n)=>{if(!o.guild||o.author?.bot)return;if(o.content===n.content)return;const e=createEmbed('Message Edited',`**User:** <@${o.author.id}>\n**Channel:** ${o.channel}\n\n**Before:**\n${o.content||'*Empty*'}\n\n**After:**\n${n.content||'*Empty*'}`);await sendLog(client,e);});};
